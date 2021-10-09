@@ -18,7 +18,6 @@ type
     rodarButton: TButton;
     Button2: TButton;
     Timer1: TTimer;
-    procedure Timer1Timer(Sender: TObject);
     procedure rodarButtonClick(Sender: TObject);
   private
     { Private declarations }
@@ -28,8 +27,7 @@ type
 
 var
   Form1: TForm1;
-  contador:Integer=0;
-  tempo:Integer;
+
 
 implementation
 
@@ -47,22 +45,15 @@ begin
     Result := 15
 end;
 procedure TForm1.rodarButtonClick(Sender: TObject);
+var
+  contador: Integer;
 begin
-  tempo := retornaTempo(tempoComboBox.ItemIndex);
-  Timer1.Enabled := true;
-  Timer1Timer(Self);
-  ShowMessage('Vamos aguardar: ' + tempo.ToString + ' Minutos');
+ Timer1.Enabled := true;
+ contador := contador + 1;
+ if contador = 10 then
+   Timer1.Enabled := false;
+   ShowMessage('Pessou 10 segundos');
 end;
-
-procedure TForm1.Timer1Timer(Sender: TObject);
-begin
-   contador := contador + 1;
-   if contador = tempo then
-    ShowMessage('Pessou 10 segundos');
-    Timer1.Enabled := false;
-    contador := 0;
-end;
-
 
 end.
 

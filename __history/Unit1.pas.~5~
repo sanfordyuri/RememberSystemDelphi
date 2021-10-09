@@ -48,9 +48,8 @@ begin
 end;
 procedure TForm1.rodarButtonClick(Sender: TObject);
 begin
-  tempo := retornaTempo(tempoComboBox.ItemIndex);
   Timer1.Enabled := true;
-  Timer1Timer(Self);
+  tempo := retornaTempo(tempoComboBox.ItemIndex);
   ShowMessage('Vamos aguardar: ' + tempo.ToString + ' Minutos');
 end;
 
