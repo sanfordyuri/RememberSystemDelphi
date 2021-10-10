@@ -79,7 +79,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
   end
-  object Edit1: TEdit
+  object palavraEdit: TEdit
     AlignWithMargins = True
     Left = 160
     Top = 128
@@ -127,11 +127,5 @@ object Form1: TForm1
     Height = 41
     Caption = 'SUGERIR'
     TabOrder = 3
-  end
-  object Timer1: TTimer
-    Enabled = False
-    OnTimer = Timer1Timer
-    Left = 448
-    Top = 144
   end
 end

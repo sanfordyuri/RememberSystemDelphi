@@ -10,29 +10,27 @@ type
   TForm1 = class(TForm)
     Label1: TLabel;
     Label2: TLabel;
-    Edit1: TEdit;
     Label3: TLabel;
     Label4: TLabel;
     tempoComboBox: TComboBox;
     Label5: TLabel;
     rodarButton: TButton;
     Button2: TButton;
-    Timer1: TTimer;
-    procedure Timer1Timer(Sender: TObject);
+    palavraEdit: TEdit;
     procedure rodarButtonClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+
   end;
 
 var
   Form1: TForm1;
-  contador:Integer=0;
   tempo:Integer;
 
 implementation
-
+uses Unit3;
 {$R *.dfm}
 
 function retornaTempo(index: Integer):Integer;
@@ -49,17 +47,10 @@ end;
 procedure TForm1.rodarButtonClick(Sender: TObject);
 begin
   tempo := retornaTempo(tempoComboBox.ItemIndex);
-  Timer1.Enabled := true;
-  ShowMessage('Vamos aguardar: ' + tempo.ToString + ' Minutos');
-end;
-
-procedure TForm1.Timer1Timer(Sender: TObject);
-begin
-   contador := contador + 1;
-   if contador = tempo then
-        Enabled := false;
-        contador := 0;
-        tempo := 0;
+  Unit3.Form3.timeLabel.Caption := tempo.ToString + ' segundos';
+  Unit3.Form3.Show;
+  Unit3.Form3.Timer1.Enabled := True;
+  Self.Hide;
 end;
 
 

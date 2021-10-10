@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Unit3;
 
 type
   TForm1 = class(TForm)
@@ -35,6 +35,11 @@ implementation
 
 {$R *.dfm}
 
+function gerarSugestao():String;
+begin
+
+end;
+
 function retornaTempo(index: Integer):Integer;
 begin
   if index = 0 then
@@ -48,20 +53,19 @@ begin
 end;
 procedure TForm1.rodarButtonClick(Sender: TObject);
 begin
+  Unit3.Form3.Show;
+  contador := 0;
   tempo := retornaTempo(tempoComboBox.ItemIndex);
   Timer1.Enabled := true;
-  ShowMessage('Vamos aguardar: ' + tempo.ToString + ' Minutos');
+  if contador = tempo then
+    Timer1.Enabled := False;
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
-   contador := contador + 1;
-   if contador = tempo then
-      begin
-        Enabled := false;
-        contador := 0;
-        tempo := 0;
-      end;
+  contador := contador + 1;
+  if contador = tempo then
+    ShowMessage('Ok')
 end;
 
 

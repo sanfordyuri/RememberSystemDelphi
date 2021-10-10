@@ -1,0 +1,59 @@
+unit Unit2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm2 = class(TForm)
+    Label2: TLabel;
+    Label1: TLabel;
+    Label3: TLabel;
+    palavrasGroup: TRadioGroup;
+    Button1: TButton;
+    resultadoLabel: TLabel;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+uses Unit1;
+
+{$R *.dfm}
+
+function embaracar(palavra:String):String;
+var
+  I:Integer;
+  index:Integer;
+  palavraNova:String;
+begin
+    palavraNova := '';
+    for I := 1 to palavra.Length do
+      index := Random(palavra.Length);
+      palavraNova := palavraNova + palavra.ToCharArray[index];
+    Result := palavraNova;
+end;
+
+procedure TForm2.Button1Click(Sender: TObject);
+var
+  palavra:String;
+begin
+  palavra := embaracar(Unit1.Form1.palavraEdit.Text);
+  ShowMessage(palavra);
+  if palavrasGroup.Items[palavrasGroup.ItemIndex] = Unit1.Form1.palavraEdit.Text then
+    resultadoLabel.Caption := 'Correto, parabéns'
+  else
+    resultadoLabel.Caption := 'Resposta errada!';
+end;
+
+
+
+end.
